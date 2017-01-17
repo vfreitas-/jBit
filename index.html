@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>jBit - A simple DOM Traverse</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+        <link rel="stylesheet" href="/examples/example1.css">
+    </head>
+    <body>
+        <h2 style="text-align: center;">Look at the console :)</h2>
+        <div id="cool">
+            <div class="square"></div>
+            <div class="square select-me"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+        </div>
+        <script src="/dist/jbit.js"></script>
+        <script>
+            var $cool = B('#cool')
+              , $squares = $cool.find('.square')
+              , $selected = $squares.filter('.select-me')
+
+            console.log($selected)
+            console.log($selected.is('div.square.select-me'))
+
+        </script>
+    </body>
+</html>
