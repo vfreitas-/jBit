@@ -4,16 +4,18 @@
     (global.B = factory());
 }(this, (function () { 'use strict';
 
-if (!Element.prototype.matches) {
-    Element.prototype.matches = Element.prototype.matchesSelector ||
-    Element.prototype.msMatchesSelector;
-}
+(function () {
+    if (!Element.prototype.matches) {
+        Element.prototype.matches = Element.prototype.matchesSelector ||
+        Element.prototype.msMatchesSelector;
+    }
+})()
 
-
-function B (selector, context) {
-    return new jBit(selector, context)
-}
-
+/**
+ * jBit class
+ *
+ * @class
+ */
 var jBit = function jBit (selector, context) {
     var this$1 = this;
     if ( context === void 0 ) context = document;
@@ -33,6 +35,12 @@ var jBit = function jBit (selector, context) {
     return this
 };
 
+/**
+ *  Filter the set of matched elements
+ *
+ * @param {string} string containing a selector expression
+ * @return {jBit} instance
+ */
 jBit.prototype.filter = function filter (selector) {
         var this$1 = this;
 
@@ -45,6 +53,13 @@ jBit.prototype.filter = function filter (selector) {
     )
 };
 
+/**
+ *  Find descendants of each element in the
+ *  current set of elements
+ *
+ * @param {string} string containing a selector expression
+ * @return {jBit} instance
+ */
 jBit.prototype.find = function find (selector) {
     return this._fill(
         this._flatten(
@@ -57,18 +72,46 @@ jBit.prototype.find = function find (selector) {
     )
 };
 
+/**
+ * Find the previous element sibling of each element in
+ * the current set of elements
+ *
+ * @return {jBit} instance
+ */
 jBit.prototype.prev = function prev () {
     return this._nextPrev('previous')
 };
 
+/**
+ * Find the next element sibling of each element in
+ * the current set of elements
+ *
+ * @return {jBit} instance
+ */
 jBit.prototype.next = function next () {
     return this._nextPrev('next')
 };
 
+/**
+ * Get all preceding sibling elements of each element in
+ * the current set of elements
+ * Can receive a selector to filter the matched siblings
+ *
+ * @param {string} string containing a selector expression
+ * @return {jBit} instance
+ */
 jBit.prototype.prevAll = function prevAll (filter) {
     return this._nextPrevAll('previous', filter)
 };
 
+/**
+ * Get all following sibling elements of each element in
+ * the current set of elements
+ * Can receive a selector to filter the matched siblings
+ *
+ * @param {string} string containing a selector expression
+ * @return {jBit} instance
+ */
 jBit.prototype.nextAll = function nextAll (filter) {
     return this._nextPrevAll('next', filter)
 };
@@ -195,6 +238,10 @@ jBit.prototype._each = function _each (elements, cb) {
 jBit.prototype._toArray = function _toArray (iterable) {
     return [].slice.call(iterable)
 };
+
+function B (selector, context) {
+    return new jBit(selector, context)
+}
 
 return B;
 

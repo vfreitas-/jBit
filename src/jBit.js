@@ -1,15 +1,16 @@
-if (!Element.prototype.matches) {
-    Element.prototype.matches = Element.prototype.matchesSelector ||
-    Element.prototype.msMatchesSelector
-}
+/**
+ * jBit class
+ *
+ * @class
+ */
+export default class jBit {
 
-
-export default function B (selector, context) {
-    return new jBit(selector, context)
-}
-
-class jBit {
-
+    /**
+     * Create a jBit instance
+     * @param {(string|array|Element|NodeList)} selector
+     * @param {Element} context
+     * @return {jBit} a new instance
+     */
     constructor (selector, context = document) {
         if (this._isStr(selector)) {
             this._each(
@@ -26,6 +27,12 @@ class jBit {
         return this
     }
 
+    /**
+     *  Filter the set of matched elements
+     *
+     * @param {string} string containing a selector expression
+     * @return {jBit} instance
+     */
     filter (selector) {
         return this._fill(
             [].filter.call(this, el => {
@@ -36,6 +43,13 @@ class jBit {
         )
     }
 
+    /**
+     *  Find descendants of each element in the
+     *  current set of elements
+     *
+     * @param {string} string containing a selector expression
+     * @return {jBit} instance
+     */
     find (selector) {
         return this._fill(
             this._flatten(
@@ -48,18 +62,46 @@ class jBit {
         )
     }
 
+    /**
+     * Find the previous element sibling of each element in
+     * the current set of elements
+     *
+     * @return {jBit} instance
+     */
     prev () {
         return this._nextPrev('previous')
     }
 
+    /**
+     * Find the next element sibling of each element in
+     * the current set of elements
+     *
+     * @return {jBit} instance
+     */
     next () {
         return this._nextPrev('next')
     }
 
+    /**
+     * Get all preceding sibling elements of each element in
+     * the current set of elements
+     * Can receive a selector to filter the matched siblings
+     *
+     * @param {string} string containing a selector expression
+     * @return {jBit} instance
+     */
     prevAll (filter) {
         return this._nextPrevAll('previous', filter)
     }
 
+    /**
+     * Get all following sibling elements of each element in
+     * the current set of elements
+     * Can receive a selector to filter the matched siblings
+     *
+     * @param {string} string containing a selector expression
+     * @return {jBit} instance
+     */
     nextAll (filter) {
         return this._nextPrevAll('next', filter)
     }

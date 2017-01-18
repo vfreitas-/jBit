@@ -2,7 +2,7 @@ import buble from 'rollup-plugin-buble'
 import uglify from 'rollup-plugin-uglify'
 
 let config = {
-    entry: 'src/jBit.js',
+    entry: 'src/index.js',
     dest: 'dist/jbit.js',
     format: 'umd',
     context: 'window',
