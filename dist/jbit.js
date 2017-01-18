@@ -146,6 +146,12 @@ jBit.prototype.children = function children (filter) {
     )
 };
 
+jBit.prototype.parent = function parent () {
+    return this._fill(
+        [].map.call(this, function (el) { return el.parentNode; })
+    )
+};
+
 jBit.prototype.is = function is (selector, el) {
         if ( el === void 0 ) el = null;
 

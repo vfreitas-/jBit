@@ -134,6 +134,12 @@ export default class jBit {
         )
     }
 
+    parent () {
+        return this._fill(
+            [].map.call(this, el => el.parentNode)
+        )
+    }
+
     is (selector, el = null) {
         if (el) {
             return el.matches(selector)
