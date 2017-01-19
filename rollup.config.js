@@ -1,5 +1,5 @@
-import buble from 'rollup-plugin-buble'
-import uglify from 'rollup-plugin-uglify'
+const buble = require('rollup-plugin-buble')
+    , uglify = require('rollup-plugin-uglify')
 
 let config = {
     entry: 'src/index.js',
@@ -16,5 +16,4 @@ if (process.env.NODE_ENV === 'production') {
     )
 }
 
-
-export default config
+module.exports = config
