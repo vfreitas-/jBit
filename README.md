@@ -1,5 +1,5 @@
 <p align="center">
-  <h1>jBit</h1>
+  <b>jBit</b>
   <br>
   A simple jQuery like DOM Traverse lightweight library written in ES6.
   <br>
