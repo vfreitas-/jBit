@@ -1,5 +1,7 @@
 <p align="center">
-  <b>jBit</b>: a simple jQuery like DOM Traverse lightweight library written in ES6.
+  <b>jBit</b>
+  <br>
+  A simple jQuery like DOM Traverse lightweight library written in ES6.
   <br>
   <a href="https://travis-ci.org/vfreitas-/jbit"><img src="https://travis-ci.org/vfreitas-/jBit.svg?branch=master" alt="travis"></a>
 </p>
