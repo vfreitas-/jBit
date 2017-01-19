@@ -16,5 +16,6 @@
 
 
 ## Supposed browser support (not tested yet)
-IE 10 + 
+IE 10+
+
 Modern browsers
