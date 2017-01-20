@@ -106,6 +106,12 @@ export default class jBit {
         return this._nextPrevAll('next', filter)
     }
 
+    /**
+     * Get all sibling elements of each element in
+     * the current set of elements
+     *
+     * @return {jBit} instance
+     */
     siblings () {
         return this._make(
             this._flatten(
@@ -118,6 +124,14 @@ export default class jBit {
         )
     }
 
+    /**
+     * Get all children elements of each element in
+     * the current set of elements
+     * Can receive a selector to filter the matched children
+     *
+     * @param {string} string containing a selector expression
+     * @return {jBit} instance
+     */
     children (filter) {
         return this._make(
             this._flatten(
@@ -134,12 +148,27 @@ export default class jBit {
         )
     }
 
+    /**
+     * Get the parent elements of each element in
+     * the current set of elements
+     *
+     * @return {jBit} instance
+     */
     parent () {
         return this._make(
             [].map.call(this, el => el.parentNode)
         )
     }
 
+    /**
+     * Test if each element in the current set of elements
+     * match the given selector
+     * Can receive an element to compare, ignoring the current
+     * set of elements
+     *
+     * @param {string} string containing a selector expression
+     * @return {jBit} instance
+     */
     is (selector, elem = null) {
         if (elem) {
             return elem.matches(selector)
@@ -148,10 +177,20 @@ export default class jBit {
         }
     }
 
+    /**
+     * Get an array containing the current set
+     * of elements
+     *
+     * @param {string} string containing a selector expression
+     * @return {array} array containing the current set of elements
+     */
     get () {
         return this._toArray(this)
     }
 
+    //=================
+    //Private methods
+    //=================
     _nextPrev (direction) {
         return this._make(
             [].map.call(this, el => {
