@@ -6,7 +6,7 @@ rollup.format = 'iife'
 // Generated on Wed Jan 18 2017 23:39:45 GMT-0200 (BRST)
 
 module.exports = function(config) {
-  config.set({
+  let tmp = {
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
@@ -81,9 +81,11 @@ module.exports = function(config) {
     // Concurrency level
     // how many browser should be started simultaneous
     concurrency: Infinity
-  })
+  }
 
   if(process.env.TRAVIS){
-    config.browsers = ['Chrome_travis_ci'];
+    tmp.browsers = ['Chrome_travis_ci'];
   }
+
+  config.set(tmp)
 }
