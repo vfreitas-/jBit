@@ -34,7 +34,7 @@ export default class jBit {
      * @return {jBit} instance
      */
     filter (selector) {
-        return this._fill(
+        return this._make(
             [].filter.call(this, el => {
                 if (this._isStr(selector)) {
                     return this.is(selector, el)
@@ -51,10 +51,10 @@ export default class jBit {
      * @return {jBit} instance
      */
     find (selector) {
-        return this._fill(
+        return this._make(
             this._flatten(
                 [].map.call(this, el => {
-                    return Array.from(
+                    return this._toArray(
                         el.querySelectorAll(selector)
                     )
                 })
@@ -107,7 +107,7 @@ export default class jBit {
     }
 
     siblings () {
-        return this._fill(
+        return this._make(
             this._flatten(
                 [].map.call(this, el => {
                     return [].filter.call(
@@ -119,7 +119,7 @@ export default class jBit {
     }
 
     children (filter) {
-        return this._fill(
+        return this._make(
             this._flatten(
                 [].map.call(this, el => {
                     if (filter) {
@@ -135,14 +135,14 @@ export default class jBit {
     }
 
     parent () {
-        return this._fill(
+        return this._make(
             [].map.call(this, el => el.parentNode)
         )
     }
 
-    is (selector, el = null) {
-        if (el) {
-            return el.matches(selector)
+    is (selector, elem = null) {
+        if (elem) {
+            return elem.matches(selector)
         } else {
             return [].every.call(this, el => el.matches(selector))
         }
@@ -153,7 +153,7 @@ export default class jBit {
     }
 
     _nextPrev (direction) {
-        return this._fill(
+        return this._make(
             [].map.call(this, el => {
                 return el[`${direction}ElementSibling`]
             })
@@ -167,7 +167,9 @@ export default class jBit {
                 , tmp = []
 
                 while (el = el[dir]) {
-                    if (filter && this.is(filter, el)) {
+                    if (filter) {
+                        this.is(filter, el) ? tmp.push(el) : ''
+                    } else {
                         tmp.push(el)
                     }
                 }
@@ -176,11 +178,15 @@ export default class jBit {
             })
         )
 
-        return this._fill(this._unique(result))
+        return this._make(this._unique(result))
     }
 
     _isStr (string) {
         return (typeof string === 'string' || string instanceof String)
+    }
+
+    _make(selector, context) {
+        return new this.constructor(selector, context)
     }
 
     _fill (results) {
