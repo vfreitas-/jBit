@@ -201,7 +201,7 @@ export default class jBit {
 
     _nextPrevAll (direction, filter) {
         let result = this._flatten(
-            [].map.call(this, (el, i) => {
+            [].map.call(this, el => {
                 let dir = `${direction}ElementSibling`
                 , tmp = []
 

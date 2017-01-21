@@ -1,5 +1,7 @@
 const buble = require('rollup-plugin-buble')
     , uglify = require('rollup-plugin-uglify')
+    , eslint = require('rollup-plugin-eslint')
+
 
 let config = {
     entry: 'src/index.js',
@@ -14,6 +16,12 @@ if (process.env.NODE_ENV === 'production') {
     config.plugins.push(
         uglify()
     )
+} else {
+    config.plugins.unshift(
+        eslint()
+    )
 }
+
+console.log(config);
 
 module.exports = config
