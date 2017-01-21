@@ -13,9 +13,9 @@
         "no-var": "error",
         "comma-dangle": "error",
         "comma-style": ["error", "first", { "exceptions": { "ArrayExpression": true, "ObjectExpression": true } }],
-        "indent": ["error", 4],
+        "indent": [2, 4],
         "prefer-arrow-callback": "error",
-        "semi": ["error", "never"],
+        "semi": [2, "never"],
         "space-before-blocks": ["error", { "functions": "always", "keywords": "always", "classes": "always" }]
     }
 }
