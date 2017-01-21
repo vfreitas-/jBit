@@ -9,8 +9,6 @@
     },
     "parser": "espree",
     "rules": {
-        "no-console": "off",
-        "no-sequences": "off",
         "no-unused-vars": "error",
         "no-var": "error",
         "comma-dangle": "error",
