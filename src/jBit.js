@@ -28,6 +28,21 @@ export default class jBit {
     }
 
     /**
+     * @param {Function} map callback
+     * @return {array} resulted by the map function
+     */
+    map (cb) {
+        return [].map.call(this, cb)
+    }
+
+    /**
+     * @param {Function} forEach callback
+     */
+    each (cb) {
+        [].forEach.call(this, cb)
+    }
+
+    /**
      *  Filter the set of matched elements
      *
      * @param {string} string containing a selector expression
