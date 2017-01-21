@@ -9,13 +9,13 @@
     },
     "parser": "espree",
     "rules": {
-        "no-unused-vars": "error",
-        "no-var": "error",
-        "comma-dangle": "error",
-        "comma-style": ["error", "first", { "exceptions": { "ArrayExpression": true, "ObjectExpression": true } }],
+        "no-unused-vars": 2,
+        "no-var": 2,
+        "comma-dangle": 2,
+        "comma-style": [2, "first", { "exceptions": { "ArrayExpression": true, "ObjectExpression": true } }],
         "indent": [2, 4],
-        "prefer-arrow-callback": "error",
+        "prefer-arrow-callback": 2,
         "semi": [2, "never"],
-        "space-before-blocks": ["error", { "functions": "always", "keywords": "always", "classes": "always" }]
+        "space-before-blocks": [2, { "functions": "always", "keywords": "always", "classes": "always" }]
     }
 }
