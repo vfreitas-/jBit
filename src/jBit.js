@@ -12,18 +12,15 @@ export default class jBit {
      * @return {jBit} a new instance
      */
     constructor (selector, context = document) {
+
         if (this._isStr(selector)) {
-            this._each(
-                context.querySelectorAll(selector),
-                el => this._push(el)
-            )
-        } else {
-            if (Array.isArray(selector)) {
-                this._fill(selector)
-            } else {
-                this._push(selector)
-            }
+            this._fill(context.querySelectorAll(selector))
+        } else if (Array.isArray(selector)) {
+            this._pushArray(selector, context)
+        } else if (this._isElement(selector)) {
+            this._push(selector)
         }
+
         return this
     }
 
@@ -236,29 +233,33 @@ export default class jBit {
     }
 
     _isStr (string) {
-        return (typeof string === 'string' || string instanceof String)
+        return string && (typeof string === 'string' || string instanceof String)
+    }
+
+    _isElement (elem) {
+        return (elem instanceof Element)
     }
 
     _make(selector, context) {
         return new this.constructor(selector, context)
     }
 
-    _fill (results) {
-        if (!Array.isArray(results)) {
-            results = [results]
-        }
-
-        this._clean()
-        this._each(results, el => this._push(el))
-        return this
+    _fill (data) {
+        this._each(data, el => this._push(el))
     }
 
-    _clean () {
-        for (let i in this) {
-            if (this.hasOwnProperty(i)) {
-                delete this[i]
-            }
-        }
+    _pushArray (selectorArr, context) {
+        this._fill(
+            this._flatten(
+                selectorArr.map(el => {
+                    if (this._isStr(el)) {
+                        return this._toArray(context.querySelectorAll(el))
+                    } else if (this._isElement(el)) {
+                        return el
+                    }
+                })
+            )
+        )
     }
 
     _push (mixed) {

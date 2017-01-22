@@ -1,4 +1,4 @@
-import {expect, should} from 'chai'
+import {expect} from 'chai'
 import B from './../src/index'
 import jBit from './../src/jBit'
 
@@ -13,7 +13,7 @@ describe('B', () => {
 
     describe('jBit', () => {
 
-        beforeEach(function() {
+        beforeEach(() => {
             $div.innerHTML = __html__['test/fixtures/index.html']
         })
 
@@ -21,14 +21,52 @@ describe('B', () => {
             $div.innerHTML = ''
         })
 
-        it('should be a jBit instance', () => {
-            expect(B('body')).to.be.a.instanceof(jBit)
-        })
+        describe('B()', () => {
+            it('should return an empty jBit instance', () => {
+                expect(B(null)).to.be.empty
+                expect(B(undefined)).to.be.empty
+                expect(B('')).to.be.empty
+            })
 
-        it('should return element when accessed like an array', () => {
-            expect(B('body')[0]).to.equal(
-                document.querySelector('body')
-            )
+            it('should allow a string selector', () => {
+                expect(B('body')[0]).to.equal(
+                    document.querySelector('body')
+                )
+            })
+
+            it('should allow a node element', () => {
+                let body = document.querySelector('body')
+                expect(B(body)[0]).to.equal(
+                    document.querySelector('body')
+                )
+            })
+
+            it('should accept a string selector array', () => {
+                let $elems = B(['body', '.container', '.base'])
+
+                expect($elems.get()).to.have.lengthOf(3)
+                expect($elems[0]).to.equal(
+                    document.querySelector('body')
+                )
+            })
+
+            it('should accept an array with elements and string selectors', () => {
+                let body = document.querySelector('body')
+                  , $elems = B([body, '.container'])
+
+                expect($elems.get()).to.have.lengthOf(2)
+                expect($elems.get()[0]).to.equal(
+                    document.querySelector('body')
+                )
+
+                expect($elems.get()[1]).to.equal(
+                    document.querySelector('.container')
+                )
+            })
+
+            it('should be a jBit instance', () => {
+                expect(B('body')).to.be.a.instanceof(jBit)
+            })
         })
 
         describe('get()', () => {
