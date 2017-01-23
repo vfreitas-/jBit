@@ -6,6 +6,21 @@
 export default class Filter {
 
     /**
+     * Reduce the set of matched elements
+     * to the one at the specified index
+     *
+     * @param {Integer} index
+     * @return {jBit} instance
+     */
+    at (index) {
+        if (index < 0) {
+            index = this.length + index
+        }
+
+        return this[index] ? this._make(this[index]) : this._make(null)
+    }
+
+    /**
      *  Filter the set of matched elements
      *
      * @param {string} string containing a selector expression

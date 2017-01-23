@@ -87,6 +87,24 @@ describe('B', () => {
             })
         })
 
+        describe('at()', () => {
+            it('should return the element at position 1', () => {
+                let $items = B('.container__item')
+
+                expect($items.at(1)[0]).to.be.equal(
+                    document.querySelector('.container__item--active')
+                )
+            })
+
+            it('should return the element at position -2', () => {
+                let $items = B('.container__item')
+
+                expect($items.at(-3)[0]).to.be.equal(
+                    document.querySelector('.container__item--active')
+                )
+            })
+        })
+
         describe('find()', () => {
             it('should find four elements', () => {
                 let $cont = B('.container')
