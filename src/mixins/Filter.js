@@ -21,6 +21,20 @@ export default class Filter {
     }
 
     /**
+     * @return
+     */
+    first () {
+        return this.at(0)
+    }
+
+    /**
+     * @return
+     */
+    last () {
+        return this.at(-1)
+    }
+
+    /**
      *  Filter the set of matched elements
      *
      * @param {string} string containing a selector expression

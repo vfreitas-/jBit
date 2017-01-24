@@ -103,6 +103,32 @@ describe('B', () => {
                     document.querySelector('.container__item--active')
                 )
             })
+
+            it('should return an empty instance', () => {
+                let $items = B('.container__item')
+
+                expect($items.at(5).get()).to.be.empty
+            })
+        })
+
+        describe('first()', () => {
+            it('should return the first element in the jBit instance', () => {
+                let $items = B('.group > *')
+
+                expect($items.first()[0]).to.be.equal(
+                    document.querySelector('input[type="text"]')
+                )
+            })
+        })
+
+        describe('last()', () => {
+            it('should return the last element in the jBit instance', () => {
+                let $items = B('.group > *')
+
+                expect($items.last()[0]).to.be.equal(
+                    document.querySelector('input[type="checkbox"]')
+                )
+            })
         })
 
         describe('find()', () => {
