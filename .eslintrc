@@ -7,6 +7,9 @@
         "mocha": true,
         "es6": true
     },
+    "ecmaFeatures": {
+        "modules": true
+    },
     "parser": "espree",
     "rules": {
         "arrow-spacing": 2,

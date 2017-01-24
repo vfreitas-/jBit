@@ -88,7 +88,7 @@ describe('B', () => {
         })
 
         describe('at()', () => {
-            it('should return the element at position 1', () => {
+            it('should return the second element of 4', () => {
                 let $items = B('.container__item')
 
                 expect($items.at(1)[0]).to.be.equal(
@@ -96,7 +96,7 @@ describe('B', () => {
                 )
             })
 
-            it('should return the element at position -2', () => {
+            it('should return the second element of 4 using a negative index', () => {
                 let $items = B('.container__item')
 
                 expect($items.at(-3)[0]).to.be.equal(

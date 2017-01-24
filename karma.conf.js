@@ -6,86 +6,75 @@ rollup.format = 'iife'
 // Generated on Wed Jan 18 2017 23:39:45 GMT-0200 (BRST)
 
 module.exports = function(config) {
-  let tmp = {
+    let tmp = {
 
-    // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
+        // base path that will be used to resolve all patterns (eg. files, exclude)
+        basePath: '',
 
+        // frameworks to use
+        // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
+        frameworks: ['mocha', 'chai'],
 
-    // frameworks to use
-    // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha', 'chai'],
+        // list of files / patterns to load in the browser
+        files: [
+            'test/fixtures/*.html',
+            'test/index.js'
+        ],
 
+        // list of files to exclude
+        exclude: [
+        ],
 
-    // list of files / patterns to load in the browser
-    files: [
-        'test/fixtures/*.html',
-        'test/index.js'
-    ],
+        // preprocess matching files before serving them to the browser
+        // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
+        preprocessors: {
+            'test/fixtures/*.html': ['html2js'],
+            'test/index.js': ['rollup']
+        },
 
+        rollupPreprocessor: rollup,
 
-    // list of files to exclude
-    exclude: [
-    ],
+        // test results reporter to use
+        // possible values: 'dots', 'progress'
+        // available reporters: https://npmjs.org/browse/keyword/karma-reporter
+        reporters: ['progress'],
 
+        // web server port
+        port: 9876,
 
-    // preprocess matching files before serving them to the browser
-    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
-        'test/fixtures/*.html': ['html2js'],
-        'test/index.js': ['rollup']
-    },
+        // enable / disable colors in the output (reporters and logs)
+        colors: true,
 
-    rollupPreprocessor: rollup,
+        // level of logging
+        // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+        logLevel: config.LOG_INFO,
 
+        // enable / disable watching file and executing tests whenever any file changes
+        autoWatch: true,
 
-    // test results reporter to use
-    // possible values: 'dots', 'progress'
-    // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+        // start these browsers
+        // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+        browsers: ['Chrome'],
 
+        customLaunchers: {
+            Chrome_travis_ci: {
+                base: 'Chrome',
+                flags: ['--no-sandbox']
+            }
+        },
 
-    // web server port
-    port: 9876,
+        // Continuous Integration mode
+        // if true, Karma captures browsers, runs the tests and exits
+        singleRun: false,
 
+        // Concurrency level
+        // how many browser should be started simultaneous
+        concurrency: Infinity
+    }
 
-    // enable / disable colors in the output (reporters and logs)
-    colors: true,
+    if(process.env.TRAVIS){
+        tmp.browsers = ['Chrome_travis_ci']
+    }
 
-
-    // level of logging
-    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_INFO,
-
-
-    // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: true,
-
-
-    // start these browsers
-    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
-
-    customLaunchers: {
-        Chrome_travis_ci: {
-            base: 'Chrome',
-            flags: ['--no-sandbox']
-        }
-    },
-
-
-    // Continuous Integration mode
-    // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
-
-    // Concurrency level
-    // how many browser should be started simultaneous
-    concurrency: Infinity
-  }
-
-  if(process.env.TRAVIS){
-    tmp.browsers = ['Chrome_travis_ci'];
-  }
-
-  config.set(tmp)
+    config.set(tmp)
 }
