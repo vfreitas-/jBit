@@ -29,7 +29,8 @@ module.exports = function(config) {
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
             'test/fixtures/*.html': ['html2js'],
-            'test/index.js': ['rollup']
+            'test/index.js': ['rollup'],
+            'src/**/*.js': ['coverage']
         },
 
         rollupPreprocessor: rollup,
@@ -37,7 +38,15 @@ module.exports = function(config) {
         // test results reporter to use
         // possible values: 'dots', 'progress'
         // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-        reporters: ['progress'],
+        reporters: ['progress', 'coverage'],
+
+        coverageReporter: {
+            dir : '.coverage/',
+            reporters: [{
+                type: "lcov",
+                subdir: "lcov"
+            }]
+        },
 
         // web server port
         port: 9876,
