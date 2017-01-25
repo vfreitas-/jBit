@@ -1,6 +1,11 @@
 const rollup = require('./rollup.config')
+    , rollupCoverage = require('rollup-plugin-istanbul')
+
 
 rollup.format = 'iife'
+rollup.plugins[0] = rollupCoverage({
+    exclude: ['test/**/*.js'] 
+})
 
 // Karma configuration
 // Generated on Wed Jan 18 2017 23:39:45 GMT-0200 (BRST)
@@ -29,8 +34,7 @@ module.exports = function(config) {
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
             'test/fixtures/*.html': ['html2js'],
-            'test/index.js': ['rollup'],
-            'src/**/*.js': ['coverage']
+            'test/index.js': ['rollup']
         },
 
         rollupPreprocessor: rollup,
@@ -45,7 +49,8 @@ module.exports = function(config) {
             reporters: [{
                 type: "lcov",
                 subdir: "lcov"
-            }]
+            }],
+            includeAllSources: true
         },
 
         // web server port
