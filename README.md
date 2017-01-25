@@ -7,6 +7,10 @@
     <img src="https://codeclimate.com/github/vfreitas-/jBit/badges/gpa.svg" />
 </a>
 
+<a href="https://codeclimate.com/github/vfreitas-/jBit/coverage">
+    <img src="https://codeclimate.com/github/vfreitas-/jBit/badges/coverage.svg" />
+</a>
+
 A simple jQuery like DOM Traverse lightweight library written in ES6(Buble).
 
 Under development
