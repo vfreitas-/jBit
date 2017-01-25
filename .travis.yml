@@ -10,6 +10,5 @@ after_success:
   - codeclimate-test-reporter < ./coverage/lcov/lcov.info
 addons:
   code_climate:
-    repo_token:
-      secure: $CODECLIMATE_TOKEN
+    repo_token: $CODECLIMATE_TOKEN
 
