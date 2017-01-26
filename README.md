@@ -3,12 +3,8 @@
 <a href="https://travis-ci.org/vfreitas-/jBit">
     <img src="https://travis-ci.org/vfreitas-/jBit.svg?branch=master" alt="travis">
 </a>
-<a href="https://codeclimate.com/github/vfreitas-/jBit">
-    <img src="https://codeclimate.com/github/vfreitas-/jBit/badges/gpa.svg" />
-</a>
-
-<a href="https://codeclimate.com/github/vfreitas-/jBit/coverage">
-    <img src="https://codeclimate.com/github/vfreitas-/jBit/badges/coverage.svg" />
+<a href="https://codecov.io/gh/vfreitas-/jBit">
+  <img src="https://codecov.io/gh/vfreitas-/jBit/branch/master/graph/badge.svg" alt="Codecov" />
 </a>
 
 A simple jQuery like DOM Traverse lightweight library written in ES6(Buble).
