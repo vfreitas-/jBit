@@ -28,6 +28,14 @@ describe('B', () => {
                 expect(B('')).to.be.empty
             })
 
+            it('should allow a jBit instance', () => {
+                let $body = B('body')
+
+                expect($body[0]).to.equal(
+                    document.querySelector('body')
+                )
+            })
+
             it('should allow a string selector', () => {
                 expect(B('body')[0]).to.equal(
                     document.querySelector('body')

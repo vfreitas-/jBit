@@ -20,11 +20,14 @@ export default class jBit extends Base {
 
     /**
      * Create a jBit instance
-     * @param {(string|array|Element|NodeList)} selector
+     * @param {(String|Array|Element|jBit)} selector
      * @param {Element} context
      * @return {jBit} a new instance
      */
     constructor (selector, context = document) {
+        if (selector instanceof jBit) {
+            selector = selector.get()
+        }
 
         if (this._isStr(selector)) {
             this._fill(context.querySelectorAll(selector))
@@ -39,10 +42,12 @@ export default class jBit extends Base {
 
     /**
      * @param {Function} map callback
-     * @return {array} resulted by the map function
+     * @return {Array} resulted by the map function
      */
     map (cb) {
-        return [].map.call(this, cb)
+        return this._make(
+            [].map.call(this, cb)
+        )
     }
 
     /**
@@ -53,12 +58,20 @@ export default class jBit extends Base {
     }
 
     /**
+     * @param {Array|NodeList} list
+     * @return {Array}
+     */
+    slice (iterable) {
+        return [].slice.apply(iterable, arguments)
+    }
+
+    /**
      * Test if each element in the current set of elements
      * match the given selector
      * Can receive an element to compare, ignoring the current
      * set of elements
      *
-     * @param {string} string containing a selector expression
+     * @param {String} string containing a selector expression
      * @return {jBit} instance
      */
     is (selector, elem = null) {
@@ -73,31 +86,54 @@ export default class jBit extends Base {
      * Get an array containing the current set
      * of elements
      *
-     * @param {string} string containing a selector expression
-     * @return {array} array containing the current set of elements
+     * @return {Array} array containing the current set of elements
      */
     get () {
-        return this._toArray(this)
+        return this.slice(this)
     }
 
     //=================
     //Private methods
     //=================
 
+    /**
+     * Used internally to create a new instance for
+     * the new set of elements
+     * 
+     * @param {(String|Array|Element|jBit)} selector
+     * @param {Element} context
+     * @return {jBit} a new instance
+     */
     _make(selector, context) {
         return new this.constructor(selector, context)
     }
 
+    /**
+     * Fill the instance with the set of elements
+     * 
+     * @param {Array} of elements to fill
+     */
     _fill (data) {
         this._each(data, el => this._push(el))
     }
 
+    /**
+     * Fill an array of selectors|elements|(jBit instances)
+     * into the instance
+     * 
+     * @param {Array} Array that may contain strings, elements or jBit instances
+     * @param {Element} context
+     */
     _pushArray (selectorArr, context) {
         this._fill(
             this._flatten(
                 selectorArr.map(el => {
+                    if (el instanceof jBit) {
+                        el = el.get()
+                    }
+
                     if (this._isStr(el)) {
-                        return this._toArray(context.querySelectorAll(el))
+                        return this.slice(context.querySelectorAll(el))
                     } else if (this._isElement(el)) {
                         return el
                     }
@@ -106,9 +142,12 @@ export default class jBit extends Base {
         )
     }
 
-    _push (mixed) {
-        if (mixed) {
-            [].push.call(this, mixed)
+    /**
+     * @param {Element} to be pushed into the instance
+     */
+    _push (element) {
+        if (element) {
+            [].push.call(this, element)
         }
     }
 }

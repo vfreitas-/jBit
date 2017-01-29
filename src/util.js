@@ -18,3 +18,11 @@ export const mixin = (target, source) => {
         }
     })
 }
+
+export const assign = (target, source) => {
+    for (let prop in source) {
+        if (source.hasOwnProperty(prop)) {
+            target[prop] = source[prop]
+        }
+    }
+}

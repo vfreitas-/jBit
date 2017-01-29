@@ -12,8 +12,6 @@ A simple jQuery like DOM Traverse lightweight library written in ES6(Buble).
 Under development
 
 ## To do
-- add test coverage
-- accept jBit instances on constructor
 - parents and closest methods
 - not, has and index method
 - add prevContext
@@ -26,4 +24,5 @@ Under development
 
 ## Supposed browser support (not tested yet, based on http://caniuse.com/ and MDN)
 IE 10+
+<br/>
 Modern browsers

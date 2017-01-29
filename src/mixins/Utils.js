@@ -26,8 +26,4 @@ export default class Utils {
     _each (elements, cb) {
         [].forEach.call(elements, cb)
     }
-
-    _toArray (iterable) {
-        return [].slice.call(iterable)
-    }
 }

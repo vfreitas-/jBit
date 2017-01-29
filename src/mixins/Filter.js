@@ -37,7 +37,7 @@ export default class Filter {
     /**
      *  Filter the set of matched elements
      *
-     * @param {string} string containing a selector expression
+     * @param {String} string containing a selector expression
      * @return {jBit} instance
      */
     filter (selector) {

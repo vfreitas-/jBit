@@ -48,7 +48,7 @@ export default class Siblings {
      * the current set of elements
      * Can receive a selector to filter the matched siblings
      *
-     * @param {string} string containing a selector expression
+     * @param {String} string containing a selector expression
      * @return {jBit} instance
      */
     prevAll (filter) {
@@ -60,7 +60,7 @@ export default class Siblings {
      * the current set of elements
      * Can receive a selector to filter the matched siblings
      *
-     * @param {string} string containing a selector expression
+     * @param {String} string containing a selector expression
      * @return {jBit} instance
      */
     nextAll (filter) {
