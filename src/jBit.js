@@ -144,7 +144,7 @@ export default class jBit extends Base {
     }
 
     /**
-     * @param {Element} e lementto be pushed into the instance
+     * @param {Element} element to be pushed into the instance
      */
     _push (element) {
         if (element) {

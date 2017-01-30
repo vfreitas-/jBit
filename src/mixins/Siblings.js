@@ -48,11 +48,11 @@ export default class Siblings {
      * the current set of elements
      * Can receive a selector to filter the matched siblings
      *
-     * @param {String} string containing a selector expression
+     * @param {String} filter containing a selector expression
      * @return {jBit} instance
      */
     prevAll (filter) {
-        return this._nextPrevAll('previousElementSibling', filter)
+        return this._whileDirection('previousElementSibling', filter)
     }
 
     /**
@@ -60,13 +60,19 @@ export default class Siblings {
      * the current set of elements
      * Can receive a selector to filter the matched siblings
      *
-     * @param {String} string containing a selector expression
+     * @param {String} filter containing a selector expression
      * @return {jBit} instance
      */
     nextAll (filter) {
-        return this._nextPrevAll('nextElementSibling', filter)
+        return this._whileDirection('nextElementSibling', filter)
     }
 
+    /**
+     * Map each element getting its next/previous sibling
+     * 
+     * @param {String} direction to go (next|previous)
+     * @return {jBit} instance
+     */
     _nextPrev (direction) {
         return this._make(
             [].map.call(this, el => {

@@ -30,24 +30,46 @@ export default class Utils {
         return this._make(this._unique(result))
     }
 
-    _isStr (string) {
-        return string && (typeof string === 'string' || string instanceof String)
+    /**
+     * @param {*} value to be tested
+     * @return {Boolean} if the value is a string
+     */
+    _isStr (value) {
+        return value && (typeof value === 'string' || value instanceof String)
     }
 
-    _isElement (elem) {
-        return (elem instanceof Element)
+    /**
+     * @param {*} value to be tested
+     * @return {Boolean} if the value if an Element
+     */
+    _isElement (value) {
+        return (value instanceof Element)
     }
 
+    /**
+     * Flatten an array in one level
+     * 
+     * @param {Array|NodeList} mixed value to be flattened
+     * @return {Array} the flattened array
+     */
     _flatten (mixed) {
         return [].concat.apply([], mixed)
     }
 
+    /**
+     * @param {Array} mixed to be checked
+     * @return {Array} with unique values
+     */
     _unique (mixed) {
         return mixed.filter((el, i) => {
             return mixed.indexOf(el) == i
         })
     }
 
+    /**
+     * @param {Array|NodeList} elements
+     * @param {Function} cb
+     */
     _each (elements, cb) {
         [].forEach.call(elements, cb)
     }

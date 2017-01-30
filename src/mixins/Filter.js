@@ -21,14 +21,14 @@ export default class Filter {
     }
 
     /**
-     * @return
+     * @return {jBit} instance containing the first element
      */
     first () {
         return this.at(0)
     }
 
     /**
-     * @return
+     * @return {jBit} instance containing the last element
      */
     last () {
         return this.at(-1)
@@ -37,7 +37,7 @@ export default class Filter {
     /**
      *  Filter the set of matched elements
      *
-     * @param {String} string containing a selector expression
+     * @param {String} selector containing a selector expression
      * @return {jBit} instance
      */
     filter (selector) {

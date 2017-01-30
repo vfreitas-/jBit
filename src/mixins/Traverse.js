@@ -11,7 +11,7 @@ export default class Traverse {
      * the current set of elements
      * Can receive a selector to filter the matched children
      *
-     * @param {String} string containing a selector expression
+     * @param {String} filter containing a selector expression
      * @return {jBit} instance
      */
     children (filter) {
@@ -34,15 +34,15 @@ export default class Traverse {
      *  Find descendants of each element in the
      *  current set of elements
      *
-     * @param {String} string containing a selector expression
+     * @param {String} filter containing a selector expression
      * @return {jBit} instance
      */
-    find (selector) {
+    find (filter) {
         return this._make(
             this._flatten(
                 [].map.call(this, el => {
                     return this.slice(
-                        el.querySelectorAll(selector)
+                        el.querySelectorAll(filter)
                     )
                 })
             )
@@ -62,10 +62,10 @@ export default class Traverse {
     }
 
     /**
-     * @param
+     * @param {String} filter containing a selector expression
      * @return {jBit} instance
      */
     parents (filter) {
-        return this._nextPrevAll('parentNode', filter)
+        return this._whileDirection('parentNode', filter)
     }
 }
