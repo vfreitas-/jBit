@@ -35,16 +35,27 @@ export default class Filter {
     }
 
     /**
+     * Filter the set of matched elements excluding 
+     * the ones that match the filter
+     * 
+     * @param {String} filter containing a selector expression
+     * @return {jBit} instance
+     */
+    not (filter) {
+        return this.filter(filter, true)
+    }
+
+    /**
      *  Filter the set of matched elements
      *
      * @param {String} selector containing a selector expression
      * @return {jBit} instance
      */
-    filter (selector) {
+    filter (selector, not = false) {
         return this._make(
             [].filter.call(this, el => {
                 if (this._isStr(selector)) {
-                    return this.is(selector, el)
+                    return !not ? this.is(selector, el) : !this.is(selector, el)
                 }
             })
         )

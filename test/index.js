@@ -307,5 +307,23 @@ describe('B', () => {
                     ])
             })
         })
+
+        describe('not()', () => {
+            it('should exclude the matched elements', () => {
+                let $items = B('.container').find('.container__item')
+
+                expect(
+                    $items.not('.container__item--active').get()
+                ).to.have.lengthOf(3)
+            })
+
+            it("shouldn't exclude any elements if no filter or an invalid filter is passed as argument", () => {
+                let $items = B('.container').find('.container__item')
+
+                expect(
+                    $items.not('.container').get()
+                ).to.have.lengthOf(4)
+            })
+        })
     })
 })

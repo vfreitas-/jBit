@@ -12,8 +12,8 @@ A simple jQuery like DOM Traverse lightweight library written in ES6(Buble).
 Under development
 
 ## To do
-- parents and closest methods
-- not, has and index method
+- closest method
+- has and index method
 - add prevContext
 - end, add and addBack methods
 
