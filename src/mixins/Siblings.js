@@ -52,7 +52,7 @@ export default class Siblings {
      * @return {jBit} instance
      */
     prevAll (filter) {
-        return this._nextPrevAll('previous', filter)
+        return this._nextPrevAll('previousElementSibling', filter)
     }
 
     /**
@@ -64,7 +64,7 @@ export default class Siblings {
      * @return {jBit} instance
      */
     nextAll (filter) {
-        return this._nextPrevAll('next', filter)
+        return this._nextPrevAll('nextElementSibling', filter)
     }
 
     _nextPrev (direction) {
@@ -73,26 +73,5 @@ export default class Siblings {
                 return el[`${direction}ElementSibling`]
             })
         )
-    }
-
-    _nextPrevAll (direction, filter) {
-        let result = this._flatten(
-            [].map.call(this, el => {
-                let dir = `${direction}ElementSibling`
-                , tmp = []
-
-                while (el = el[dir]) {
-                    if (filter) {
-                        this.is(filter, el) ? tmp.push(el) : ''
-                    } else {
-                        tmp.push(el)
-                    }
-                }
-
-                return tmp
-            })
-        )
-
-        return this._make(this._unique(result))
     }
 }

@@ -41,7 +41,7 @@ export default class jBit extends Base {
     }
 
     /**
-     * @param {Function} map callback
+     * @param {Function} cb map callback
      * @return {Array} resulted by the map function
      */
     map (cb) {
@@ -51,14 +51,14 @@ export default class jBit extends Base {
     }
 
     /**
-     * @param {Function} forEach callback
+     * @param {Function} cb forEach callback
      */
     each (cb) {
         [].forEach.call(this, cb)
     }
 
     /**
-     * @param {Array|NodeList} list
+     * @param {Array|NodeList} iterable list
      * @return {Array}
      */
     slice (iterable) {
@@ -71,7 +71,8 @@ export default class jBit extends Base {
      * Can receive an element to compare, ignoring the current
      * set of elements
      *
-     * @param {String} string containing a selector expression
+     * @param {String} selector string containing a selector expression
+     * @param {Element} elem to test the selector against
      * @return {jBit} instance
      */
     is (selector, elem = null) {
@@ -111,7 +112,7 @@ export default class jBit extends Base {
     /**
      * Fill the instance with the set of elements
      * 
-     * @param {Array} of elements to fill
+     * @param {Array} data of elements to fill
      */
     _fill (data) {
         this._each(data, el => this._push(el))
@@ -121,7 +122,7 @@ export default class jBit extends Base {
      * Fill an array of selectors|elements|(jBit instances)
      * into the instance
      * 
-     * @param {Array} Array that may contain strings, elements or jBit instances
+     * @param {Array} selectorArr Array that may contain strings, elements or jBit instances
      * @param {Element} context
      */
     _pushArray (selectorArr, context) {
@@ -143,7 +144,7 @@ export default class jBit extends Base {
     }
 
     /**
-     * @param {Element} to be pushed into the instance
+     * @param {Element} e lementto be pushed into the instance
      */
     _push (element) {
         if (element) {

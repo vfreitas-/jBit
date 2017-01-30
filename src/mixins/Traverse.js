@@ -60,4 +60,12 @@ export default class Traverse {
             [].map.call(this, el => el.parentNode)
         )
     }
+
+    /**
+     * @param
+     * @return {jBit} instance
+     */
+    parents (filter) {
+        return this._nextPrevAll('parentNode', filter)
+    }
 }

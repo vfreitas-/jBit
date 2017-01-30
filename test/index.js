@@ -285,5 +285,27 @@ describe('B', () => {
                     )
             })
         })
+
+        describe('parents()', () => {
+            it('should return all element parents', () => {
+                let $base2 = B('.base-2')
+
+                expect($base2.parents().get())
+                    .to.include.members([
+                        document.querySelector('li.two'),
+                        document.querySelector('ul.base')
+                    ])
+            })
+
+            it('should return all parent elements filtered', () => {
+                let $el = B('.base-2 .a')
+
+                expect($el.parents('ul').get())
+                    .to.include.members([
+                        document.querySelector('ul.base-2'),
+                        document.querySelector('ul.base')
+                    ])
+            })
+        })
     })
 })
