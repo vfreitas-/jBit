@@ -75,6 +75,20 @@ describe('B', () => {
                     document.querySelector('.container')
                 )
             })
+
+            it('should accept an array with elements, selectors and jBit instances', () => {
+                let body = document.querySelector('#div-01')
+                  , $cont = B('.container')
+                  , $elems = B([body, $cont, '.base'])
+
+                expect($elems.get()).to.have.lengthOf(3)
+                expect($elems.get())
+                    .to.include.members([
+                        document.querySelector('#div-01'),
+                        document.querySelector('.container'),
+                        document.querySelector('.base')
+                    ])
+            })
         })
 
         describe('get()', () => {

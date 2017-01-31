@@ -94,9 +94,9 @@ export default class Traverse {
                     (next = parent && parent.matches) &&
                     !this.is(selector, parent)
                 ) {
-                    parent = parent.parentNode;
+                    parent = parent.parentNode
                 }
-                return next ? parent : null;
+                return next ? parent : null
             }
         })
 

@@ -130,7 +130,7 @@ export default class jBit extends Base {
             this._flatten(
                 selectorArr.map(el => {
                     if (el instanceof jBit) {
-                        el = el.get()
+                        this._pushArray(el.get(), context)
                     }
 
                     if (this._isStr(el)) {
