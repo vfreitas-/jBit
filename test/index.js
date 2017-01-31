@@ -22,22 +22,26 @@ describe('B', () => {
         })
 
         describe('B()', () => {
+            it('should be a jBit instance', () => {
+                expect(B('body')).to.be.a.instanceof(jBit)
+            })
+
             it('should return an empty jBit instance', () => {
                 expect(B(null)).to.be.empty
                 expect(B(undefined)).to.be.empty
                 expect(B('')).to.be.empty
             })
-
-            it('should allow a jBit instance', () => {
-                let $body = B('body')
-
-                expect($body[0]).to.equal(
+            
+            it('should allow a string selector', () => {
+                expect(B('body')[0]).to.equal(
                     document.querySelector('body')
                 )
             })
 
-            it('should allow a string selector', () => {
-                expect(B('body')[0]).to.equal(
+            it('should allow a jBit instance', () => {
+                let $body = B('body')
+
+                expect(B($body)[0]).to.equal(
                     document.querySelector('body')
                 )
             })
@@ -70,10 +74,6 @@ describe('B', () => {
                 expect($elems.get()[1]).to.equal(
                     document.querySelector('.container')
                 )
-            })
-
-            it('should be a jBit instance', () => {
-                expect(B('body')).to.be.a.instanceof(jBit)
             })
         })
 
@@ -305,6 +305,36 @@ describe('B', () => {
                         document.querySelector('ul.base-2'),
                         document.querySelector('ul.base')
                     ])
+            })
+        })
+
+        describe('closest()', () => {
+            it('should return the closest element', () => {
+                let $el = B('li.a')
+
+                expect($el.closest('ul')[0])
+                    .to.be.equal(
+                        document.querySelector('ul.base-2')
+                    )
+            })
+
+            it('should return the element itself', () => {
+                let $div = B('#div-03')
+
+                expect($div.closest('div div')[0])
+                    .to.be.equal(
+                        $div[0]
+                    )
+            })
+
+            it('should return an empty jBit object', () => {
+                let $el = B('li.a')
+
+                expect($el.closest().get())
+                    .to.be.empty
+
+                expect($el.closest('.some-div').get())
+                    .to.be.empty
             })
         })
 

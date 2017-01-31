@@ -68,4 +68,38 @@ export default class Traverse {
     parents (filter) {
         return this._whileDirection('parentNode', filter)
     }
+
+    /**
+     * Returns the closest ancestor of the current element (or the current element itself) 
+     * which matches the selector for each of the elements in the current
+     * set of elements
+     * 
+     * @param {String} selector
+     * @return {jBit} instance
+     */
+    closest (selector) {
+        if (!selector || !this._isStr(selector)) {
+            return this._make(null)
+        }
+
+        let matched = this.map(el => {
+            //use the native new method if possible
+            if (el.closest) {
+                return el.closest(selector) 
+            } else {
+                let parent = el
+                  , next = null
+
+                while (
+                    (next = parent && parent.matches) &&
+                    !this.is(selector, parent)
+                ) {
+                    parent = parent.parentNode;
+                }
+                return next ? parent : null;
+            }
+        })
+
+        return this._make(matched)
+    }
 }

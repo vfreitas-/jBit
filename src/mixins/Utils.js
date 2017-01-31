@@ -40,10 +40,18 @@ export default class Utils {
 
     /**
      * @param {*} value to be tested
-     * @return {Boolean} if the value if an Element
+     * @return {Boolean} if the value is an Element
      */
     _isElement (value) {
         return (value instanceof Element)
+    }
+
+    /**
+     * @param {*} value to be tested
+     * @return {Boolean} if the value is a Function
+     */
+    _isFunction (value) {
+        return (value instanceof Function)
     }
 
     /**
