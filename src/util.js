@@ -1,4 +1,12 @@
 
+
+/**
+ * Regex to match id, tag and class selector
+ * 
+ * @const
+ */
+export const rgxSelector = /^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/
+
 /**
  * Add a mixin to a class
  *

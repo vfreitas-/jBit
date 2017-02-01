@@ -2,7 +2,7 @@ import Filter from './mixins/Filter'
 import Siblings from './mixins/Siblings'
 import Utils from './mixins/Utils'
 import Traverse from './mixins/Traverse'
-import { mixin } from './util'
+import { mixin, rgxSelector } from './util'
 
 class Base {}
 
@@ -30,7 +30,7 @@ export default class jBit extends Base {
         }
 
         if (this._isStr(selector)) {
-            this._fill(context.querySelectorAll(selector))
+            this._fill(this._selector(selector, context))
         } else if (Array.isArray(selector)) {
             this._pushArray(selector, context)
         } else if (this._isElement(selector)) {
@@ -110,6 +110,30 @@ export default class jBit extends Base {
     }
 
     /**
+     * @param {(String|Array|Element|jBit)} selector
+     * @param {Element} context
+     * @return {NodeList} with the matched elements
+     */
+    _selector (selector, context) {
+        let match, m
+        if (match = rgxSelector.exec(selector)) {
+            let matched = null
+            //id selector
+            if ( (m = match[1]) ) {
+                matched = [context.getElementById(m)]
+            } else if ( (m = match[2]) ) {
+                matched = context.getElementsByTagName(m)
+            } else if ( (m = match[3]) ) {
+                matched = context.getElementsByClassName(m)
+            }
+
+            return matched
+        } else {
+            return context.querySelectorAll(selector)
+        }
+    }
+
+    /**
      * Fill the instance with the set of elements
      * 
      * @param {Array} data of elements to fill
@@ -134,7 +158,7 @@ export default class jBit extends Base {
                     }
 
                     if (this._isStr(el)) {
-                        return this.slice(context.querySelectorAll(el))
+                        return this.slice(this._selector(el, context))
                     } else if (this._isElement(el)) {
                         return el
                     }
