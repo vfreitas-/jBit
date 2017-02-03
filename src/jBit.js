@@ -33,7 +33,7 @@ export default class jBit extends Base {
             if (context instanceof jBit) {
                 return context.find(selector)
             }
-            
+
             this._fill(this._selector(selector, context))
         } else if (Array.isArray(selector)) {
             this._pushArray(selector, context)
@@ -85,6 +85,17 @@ export default class jBit extends Base {
         } else {
             return [].every.call(this, el => el.matches(selector))
         }
+    }
+
+    /**
+     * Add new elements to the instance
+     * 
+     * @param {String} selector string containing a selector expression
+     * @param {Element} elem to test the selector against
+     * @return {jBit} instance
+     */
+    add (selector, context) {
+        return this._merge(this, this._make(selector, context))
     }
 
     /**
@@ -169,6 +180,21 @@ export default class jBit extends Base {
                 })
             )
         )
+    }
+
+    /**
+     * Merge two jBit instances
+     * 
+     * @param {jBit} source instance
+     * @param {jBit} target instance
+     * @return {jBit} instance containing both, source and target matched elements
+     */
+    _merge (source, target) {
+        for (let i = 0; i < target.length; i++) {
+            source._push(target[i])
+        }
+
+        return source
     }
 
     /**

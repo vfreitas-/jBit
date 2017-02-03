@@ -404,5 +404,25 @@ describe('B', () => {
                     )
             })
         })
+
+        describe('add()', () => {
+            it('should add the selector to the jBit instance', () => {
+                let $elems = B('.base')
+
+                expect($elems.add('.container').get())
+                    .to.include.members([
+                        document.querySelector('.base'),
+                        document.querySelector('.container')
+                    ])
+
+                expect($elems.add(['.container', '.group', '#div-01']).get())
+                    .to.include.members([
+                        document.querySelector('.base'),
+                        document.querySelector('.container'),
+                        document.querySelector('.group'),
+                        document.querySelector('#div-01')
+                    ])
+            })
+        })
     })
 })
