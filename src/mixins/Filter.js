@@ -46,6 +46,27 @@ export default class Filter {
     }
 
     /**
+     * Filter the set of matched elements to those that have
+     * a descendant that matches the selector or Element
+     * 
+     * @param {String|Element} selector containing a selector expression
+     * @return {jBit} instance
+     */
+    has (selector) {
+        let elems = this._make(selector, this).get()
+
+        let matches = [].filter.call(this, el => {
+            for (let i = 0; i < elems.length; i++) {
+                if (el.contains(elems[i])) {
+                    return true
+                }
+            }
+        })
+
+        return this._make(matches)
+    }
+
+    /**
      *  Filter the set of matched elements
      *
      * @param {String} selector containing a selector expression

@@ -21,7 +21,7 @@ export default class jBit extends Base {
     /**
      * Create a jBit instance
      * @param {(String|Array|Element|jBit)} selector
-     * @param {Element} context
+     * @param {Element|jBit} context
      * @return {jBit} a new instance
      */
     constructor (selector, context = document) {
@@ -30,6 +30,10 @@ export default class jBit extends Base {
         }
 
         if (this._isStr(selector)) {
+            if (context instanceof jBit) {
+                return context.find(selector)
+            }
+            
             this._fill(this._selector(selector, context))
         } else if (Array.isArray(selector)) {
             this._pushArray(selector, context)

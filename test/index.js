@@ -369,5 +369,40 @@ describe('B', () => {
                 ).to.have.lengthOf(4)
             })
         })
+
+        describe('has()', () => {
+            it('should return the element if he contains any descendants with the given selector', () => {
+                let $base = B('.base')
+
+                expect($base.has('.a')[0])
+                    .to.be.equal(
+                        document.querySelector('.base')
+                    )
+
+                let $lis = B('.base li')
+
+                expect($lis.has('.a')[0])
+                    .to.be.equal(
+                        document.querySelector('li.two')
+                    )
+            })
+
+            it('should return an empty jBit instance', () => {
+                let $lis = B('.base li')
+
+                expect($lis.has('button'))
+                    .to.be.empty
+            })
+
+            it('should accept an Element also', () => {
+                let $lis = B('.base li')
+                let $a = document.querySelector('.a')
+
+                expect($lis.has($a)[0])
+                    .to.be.equal(
+                        document.querySelector('li.two')
+                    )
+            })
+        })
     })
 })
