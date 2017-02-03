@@ -27,9 +27,9 @@ describe('B', () => {
             })
 
             it('should return an empty jBit instance', () => {
-                expect(B(null)).to.be.empty
-                expect(B(undefined)).to.be.empty
-                expect(B('')).to.be.empty
+                expect(B(null)).to.have.lengthOf(0)
+                expect(B(undefined)).to.have.lengthOf(0)
+                expect(B('')).to.have.lengthOf(0)
             })
             
             it('should allow a string selector', () => {
@@ -129,7 +129,7 @@ describe('B', () => {
             it('should return an empty instance', () => {
                 let $items = B('.container__item')
 
-                expect($items.at(5).get()).to.be.empty
+                expect($items.at(5).get()).to.have.lengthOf(0)
             })
         })
 
@@ -285,7 +285,7 @@ describe('B', () => {
                   , $active = $cont.find('.container__item--active')
 
                 expect($active.children().get())
-                    .to.be.empty
+                    .to.have.lengthOf(0)
             })
         })
 
@@ -345,10 +345,10 @@ describe('B', () => {
                 let $el = B('li.a')
 
                 expect($el.closest().get())
-                    .to.be.empty
+                    .to.have.lengthOf(0)
 
                 expect($el.closest('.some-div').get())
-                    .to.be.empty
+                    .to.have.lengthOf(0)
             })
         })
 
@@ -391,7 +391,7 @@ describe('B', () => {
                 let $lis = B('.base li')
 
                 expect($lis.has('button'))
-                    .to.be.empty
+                    .to.have.lengthOf(0)
             })
 
             it('should accept an Element also', () => {
@@ -421,6 +421,24 @@ describe('B', () => {
                         document.querySelector('.container'),
                         document.querySelector('.group'),
                         document.querySelector('#div-01')
+                    ])
+            })
+        })
+
+        describe.only('end()', () => {
+            it('should return the previous filtering state', () => {
+                let $elems = B('.base')
+
+                let $result = $elems.find('li').not('.two').end().not('.one')
+
+                expect($result.get())
+                    .to.include.members([
+                        document.querySelector('.two')
+                    ])
+
+                expect($result.get())
+                    .to.not.include.members([
+                        document.querySelector('.one')
                     ])
             })
         })

@@ -25,6 +25,8 @@ export default class jBit extends Base {
      * @return {jBit} a new instance
      */
     constructor (selector, context = document) {
+        this.length = 0
+
         if (selector instanceof jBit) {
             selector = selector.get()
         }
@@ -99,6 +101,13 @@ export default class jBit extends Base {
     }
 
     /**
+     * @return {jBit} the previous set of metched elements
+     */
+    end () {
+        return this.previous || this._make(null)
+    }
+
+    /**
      * Get an array containing the current set
      * of elements
      *
@@ -121,7 +130,12 @@ export default class jBit extends Base {
      * @return {jBit} a new instance
      */
     _make(selector, context) {
-        return new this.constructor(selector, context)
+        let n = new this.constructor(selector, context)
+
+        n.previous = this
+
+        return n
+        // return new this.constructor(selector, context)
     }
 
     /**
