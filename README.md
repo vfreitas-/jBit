@@ -12,9 +12,7 @@ A simple jQuery like DOM Traverse lightweight library written in ES6(Buble).
 Under development
 
 ## To do
-- has and index method
-- add prevContext
-- end, add and addBack methods
+- index method
 
 ## Whishlist
 - add flow type checking

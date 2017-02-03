@@ -425,7 +425,7 @@ describe('B', () => {
             })
         })
 
-        describe.only('end()', () => {
+        describe('end()', () => {
             it('should return the previous filtering state', () => {
                 let $elems = B('.base')
 
@@ -439,6 +439,32 @@ describe('B', () => {
                 expect($result.get())
                     .to.not.include.members([
                         document.querySelector('.one')
+                    ])
+            })
+        })
+
+        describe('addBack()', () => {
+            it('should add the previous set of elements to the current one', () => {
+                let $elems = B('.base')
+
+                let $result = $elems.find('li').addBack()
+
+                expect($result.get())
+                    .to.include.members([
+                        document.querySelector('.base'),
+                        document.querySelector('.two')
+                    ])
+            })
+
+            it('should add the previous set of elements to the current one filtered', () => {
+                let $elems = B('.base > li')
+
+                let $result = $elems.find('li.a').addBack('.two')
+
+                expect($result.get())
+                    .to.include.members([
+                        document.querySelector('.a'),
+                        document.querySelector('.two')
                     ])
             })
         })

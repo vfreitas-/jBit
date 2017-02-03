@@ -101,6 +101,21 @@ export default class jBit extends Base {
     }
 
     /**
+     * Add the previous set of elements, to the current one
+     * optionally filtered by a selector
+     * 
+     * @param {String} selector string containing a selector expression
+     * @return {jBit} instance
+     */
+    addBack (selector) {
+        return this.add(
+            !selector
+                ? this.previous
+                : this.previous.filter(selector)
+        )
+    }
+
+    /**
      * @return {jBit} the previous set of metched elements
      */
     end () {
