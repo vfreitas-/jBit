@@ -6,6 +6,18 @@
 export default class Filter {
 
     /**
+     * Return the position of the first element relative
+     * to its siblings elements
+     * 
+     * @return {Number} zero based position 
+     */
+    index () {
+        return ( this[0] && this[0].parentNode ) 
+            ? this.first().prevAll().length 
+            : -1
+    }
+
+    /**
      * Reduce the set of matched elements
      * to the one at the specified index
      *

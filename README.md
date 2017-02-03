@@ -11,10 +11,8 @@ A simple jQuery like DOM Traverse lightweight library written in ES6(Buble).
 
 Under development
 
-## To do
-- index method
-
 ## Whishlist
+- break test in one file per mixin
 - add flow type checking
 - add typescript definition
 - improve support for SSR environments

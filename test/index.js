@@ -109,6 +109,15 @@ describe('B', () => {
             })
         })
 
+        describe('index()', () => {
+            it('should return the element position', () => {
+                let $elems = B('.container__item--active')
+
+                expect($elems.index())
+                    .to.be.equal(1)
+            })
+        })
+
         describe('at()', () => {
             it('should return the second element of 4', () => {
                 let $items = B('.container__item')
