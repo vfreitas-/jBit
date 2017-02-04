@@ -8,7 +8,7 @@ let config = {
     dest: 'dist/jbit.js',
     format: 'umd',
     context: 'window',
-    moduleName: 'B',
+    moduleName: '$',
     plugins: [ buble() ]
 }
 
