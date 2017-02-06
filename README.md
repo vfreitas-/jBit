@@ -17,8 +17,6 @@
 
 A simple jQuery like DOM Traverse lightweight (less than 5kb gzipped) library written in ES6(Buble).
 
-Under development
-
 ## Table of Contents
 
 -   [Install](#install)

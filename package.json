@@ -1,6 +1,6 @@
 {
   "name": "jbit",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A simple jQuery like DOM Traverse lightweight library written in ES6.",
   "engines": {
     "node": ">=6.0.0",
@@ -10,11 +10,12 @@
   "main": "dist/jbit.js",
   "scripts": {
     "start": "rollup -c rollup.config.js -m -w",
-    "prod": "NODE_ENV=production rollup -c rollup.config.js",
+    "build": "rollup -c rollup.config.js -m",
+    "build:minify": "NODE_ENV=production rollup -c rollup.config.js -o dist/jbit.min.js",
     "test": "karma start --single-run",
     "test:w": "karma start",
     "docs": "documentation readme src/index.js --section API -q",
-    "release": "npm run prod && git commit -am $npm_package_version && git tag $npm_package_version && git push && git push --tags && npm publish"
+    "release": "npm run build && npm run build:minify && git commit -am $npm_package_version && git tag $npm_package_version && git push && git push --tags && npm publish"
   },
   "files": [
     "src",
