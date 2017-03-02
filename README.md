@@ -6,11 +6,9 @@
 <a href="https://codecov.io/gh/vfreitas-/jBit">
   <img src="https://codecov.io/gh/vfreitas-/jBit/branch/master/graph/badge.svg" alt="Codecov" />
 </a>
-
 <a href="https://www.npmjs.org/package/jbit">
   <img src="https://img.shields.io/npm/v/jbit.svg?style=flat" alt="npm">
 </a>
-
 <a href="https://david-dm.org/vfreitas-/jbit">
   <img src="https://david-dm.org/vfreitas-/jbit/status.svg" alt="dependencies Status">
 </a>
